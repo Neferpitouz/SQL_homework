@@ -12,7 +12,8 @@ create table if not exists genres_of_performers (
   genre_id SERIAL,
   foreign key(genre_id) references genres(id),
   performer_id SERIAL,
-  foreign key(performer_id) references performers(id)
+  foreign key(performer_id) references performers(id),
+  primary key (genre_id, performer_id)
 );
 
 create table if not exists performers_albums (
@@ -26,7 +27,8 @@ create table if not exists performers_and_albums (
   performer_id SERIAL,
   foreign key(performer_id) references performers(id),
   album_id SERIAL,
-  foreign key(album_id) references performers_albums(id)
+  foreign key(album_id) references performers_albums(id),
+  primary key(performer_id, album_id)
 );
 
 create table if not exists tracks (
@@ -48,5 +50,6 @@ create table if not exists collection_of_tracks (
   track_id SERIAL,
   foreign key(track_id) references tracks(id),
   collection_id SERIAL,
-  foreign key(collection_id) references collections(id)
+  foreign key(collection_id) references collections(id),
+  primary key(track_id, collection_id)
 );
